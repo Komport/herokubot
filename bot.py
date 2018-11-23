@@ -3,6 +3,7 @@ import os
 from flask import Flask, request
 
 import telebot
+from telebot import types
 
 TOKEN = '632985476:AAFfx7TD5eeKRhgexKBgMERA6zgD7znLFD4'
 bot = telebot.TeleBot(TOKEN)
@@ -12,6 +13,17 @@ server = Flask(__name__)
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+
+@bot.message_handler(commands=['menu'])
+def open_menu(message):
+    markup = types.ReplyKeyboardMarkup(row_width=2)
+    btn1 = types.KeyboardButton('a')
+    btn2 = types.KeyboardButton('b')
+    btn3 = types.KeyboardButton('c')
+    btn4 = types.KeyboardButton('d')
+    markup.add(btn1,btn2,btn3,btn4)
+    bot.send_message(message.chat_id,"Choose One letter:",replu_markup=markup)
+
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
