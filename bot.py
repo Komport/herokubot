@@ -22,7 +22,7 @@ def open_menu(message):
     btn3 = types.KeyboardButton('c')
     btn4 = types.KeyboardButton('d')
     markup.add(btn1,btn2,btn3,btn4)
-    bot.send_message(message.chat_id,"Choose One letter:",replu_markup=markup)
+    bot.send_message(message,"Choose One letter:",replu_markup=markup)
 
 
 
