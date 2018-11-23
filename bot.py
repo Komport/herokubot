@@ -17,16 +17,17 @@ def start(message):
 @bot.message_handler(commands=['menu'])
 def open_menu(message):
     markup = types.ReplyKeyboardMarkup(row_width=2)
-    btn1 = types.KeyboardButton('/a')
+    btn1 = types.KeyboardButton('/youtube')
     btn2 = types.KeyboardButton('/b')
     btn3 = types.KeyboardButton('/c')
     btn4 = types.KeyboardButton('/d')
     markup.add(btn1,btn2,btn3,btn4)
     bot.reply_to(message,"Choose One letter:",reply_markup=markup)
 
-@bot.message_handler(commands=['a','b','c','d'])
+@bot.message_handler(commands=['youtube','b','c','d'])
 def menu_handler(message):
-    bot.reply_to(message,'You have selected '+message.text)
+    if message.text == 'youtube':
+        bot.reply_to(message,'You have selected '+message)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
