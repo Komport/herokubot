@@ -26,7 +26,7 @@ def open_menu(message):
 
 @bot.message_handler(commands=['youtube','b','c','d'])
 def menu_handler(message):
-    if message.text == 'youtube':
+    if message.text == '/youtube':
         bot.reply_to(message,'You have selected '+message)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
