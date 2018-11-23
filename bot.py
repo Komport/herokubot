@@ -17,18 +17,20 @@ def start(message):
 @bot.message_handler(commands=['menu'])
 def open_menu(message):
     markup = types.ReplyKeyboardMarkup(row_width=2)
-    btn1 = types.KeyboardButton('a')
-    btn2 = types.KeyboardButton('b')
-    btn3 = types.KeyboardButton('c')
-    btn4 = types.KeyboardButton('d')
+    btn1 = types.KeyboardButton('/a')
+    btn2 = types.KeyboardButton('/b')
+    btn3 = types.KeyboardButton('/c')
+    btn4 = types.KeyboardButton('/d')
     markup.add(btn1,btn2,btn3,btn4)
     bot.reply_to(message,"Choose One letter:",reply_markup=markup)
 
-
+@bot.message_handler(commands=['a','b','c','d'])
+def menu_handler(message):
+    bot.reply_to(message,'You have selected '+message.text)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    bot.reply_to(message, message.text)
+    bot.reply_to(message, message)
 
 
 @server.route('/' + TOKEN, methods=['POST'])
