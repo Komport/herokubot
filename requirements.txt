@@ -1,4 +1,6 @@
 Flask
 gunicorn
 pyTelegramBotAPI
-
+imageio
+numpy
+scipy
