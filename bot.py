@@ -25,7 +25,7 @@ def open_menu(message):
     markup.add(btn1,btn2,btn3,btn4)
     bot.reply_to(message,"Choose One letter:",reply_markup=markup)
 
-@bot.message_handler(commands=['youtube','sketch','c','d'])
+@bot.message_handler(commands=['youtube','sketch','c','d'],content_types=['text','photo'])
 def menu_handler(message):
     if message.text == '/youtube':
         bot.reply_to(message,'You have selected '+message.text)
@@ -34,7 +34,10 @@ def menu_handler(message):
         bot.register_next_step_handler(msg,photo_sketch)
 
 def photo_sketch(message):
-    bot.send_mesasge(message.from_user.id,message)
+    mphoto = message.photo
+    ephoto = sketch.sketch_image(mphoto)
+    bot.send_mesasge(message.from_user.id,'Your photo reaaady.')
+    bot.send_photo(message.from_user.id,ephoto)
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
